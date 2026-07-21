@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;}
+  body{margin:0;background:#08090c;}
+  a{color:#4f9ef8;text-decoration:none;} a:hover{color:#7cb8ff;}
+  .cx-scroll::-webkit-scrollbar{width:10px;height:10px;}
+  .cx-scroll::-webkit-scrollbar-thumb{background:#2b3240;border-radius:8px;border:2px solid #0e1116;}
+  .cx-scroll::-webkit-scrollbar-track{background:transparent;}
+  @keyframes cxpop{from{opacity:0;transform:translateY(-6px);}to{opacity:1;transform:none;}}
+</style>
+</helmet>
+<div style="width:100%;height:100vh;font-family:'Plus Jakarta Sans',sans-serif;color:#e7eaf0;background:#0e1116;">
+
+        <div style="height:100%;display:flex;flex-direction:column;position:relative;">
+
+          <div style="height:60px;flex:none;display:flex;align-items:center;gap:14px;padding:0 22px;border-bottom:1px solid #1c222c;">
+            <img src="../cortexai.svg" alt="CortexAI" style="height:30px;width:auto;display:block;">
+            <img src="../team-logo-dark.svg" alt="Analytics" style="height:40px;width:auto;display:block;">
+            <div style="width:1px;height:30px;background:#2a313d;"></div>
+            <span style="font-size:17px;font-weight:700;color:#fff;">CortexAI <span style="color:#8a94a6;font-weight:600;">for</span></span>
+            <button onClick="{{ toggleSwitcher }}" style="display:flex;align-items:center;gap:10px;background:{{ switchBg }};border:1px solid {{ switchBorder }};border-radius:12px;padding:8px 14px;cursor:pointer;font-family:inherit;">
+              <span style="width:20px;height:20px;display:block;color:{{ accent }};">{{ cIcon }}</span>
+              <span style="font-size:17px;font-weight:700;color:#fff;">{{ domainLabel }}</span>
+              <span style="color:#8a94a6;font-size:12px;">&#9662;</span>
+            </button>
+            <div style="margin-left:auto;display:flex;align-items:center;gap:14px;">
+              <button style="background:transparent;border:1px solid #2f3a4a;color:#c3cad6;border-radius:999px;padding:8px 16px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;">Share Feedback</button>
+              <div style="width:42px;height:23px;border-radius:999px;background:#2a313d;position:relative;"><span style="position:absolute;top:2.5px;right:2.5px;width:18px;height:18px;border-radius:50%;background:#e7eaf0;"></span></div>
+            </div>
+          </div>
+
+          <sc-if value="{{ switcherOpen }}" hint-placeholder-val="{{ false }}">
+            <div style="position:absolute;top:64px;left:150px;width:380px;z-index:40;background:#161b23;border:1px solid #2f3a4a;border-radius:16px;box-shadow:0 30px 80px rgba(0,0,0,.6);padding:10px;animation:cxpop .16s ease;">
+              <div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#7c8698;font-weight:700;padding:8px 10px 10px;">Jump to domain</div>
+              <sc-for list="{{ domains }}" as="d" hint-placeholder-count="4">
+                <div onClick="{{ d.onClick }}" style="display:flex;align-items:center;gap:12px;padding:11px 10px;border-radius:11px;cursor:{{ d.cursor }};background:{{ d.railBg }};opacity:{{ d.opacity }};">
+                  <span style="width:34px;height:34px;flex:none;border-radius:9px;display:flex;align-items:center;justify-content:center;background:{{ d.chipBg }};color:{{ d.iconColor }};"><span style="width:19px;height:19px;display:block;">{{ d.icon }}</span></span>
+                  <div style="flex:1;min-width:0;">
+                    <div style="display:flex;align-items:center;gap:7px;">
+                      <span style="font-size:14.5px;font-weight:700;color:{{ d.textColor }};">{{ d.label }}</span>
+                      <sc-if value="{{ d.statusShow }}" hint-placeholder-val="{{ false }}">
+                        <span style="font-size:9px;font-weight:800;letter-spacing:.05em;border-radius:4px;padding:1.5px 5px;background:{{ d.statusBg }};color:{{ d.statusColor }};">{{ d.statusLabel }}</span>
+                      </sc-if>
+                    </div>
+                    <div style="font-size:11.5px;color:#7c8698;margin-top:2px;">{{ d.resumeLabel }}</div>
+                  </div>
+                  <span style="font-size:12px;font-weight:700;color:{{ d.actionColor }};">{{ d.action }}</span>
+                </div>
+              </sc-for>
+              <div style="border-top:1px solid #232a35;margin-top:6px;padding:10px 12px 6px;font-family:'Roboto Mono',monospace;font-size:11px;color:#6b7688;display:flex;gap:16px;">
+                <span>&#8597; navigate</span><span>&#8629; open</span><span>esc close</span>
+              </div>
+            </div>
+          </sc-if>
+
+          <div style="flex:1;min-height:0;">
+            <dc-import name="Workspace" domain="{{ domain }}" domain-label="{{ domainLabel }}" accent="{{ accent }}" section="{{ section }}" generated="{{ generated }}" section-layout="left" on-section="{{ onSection }}" on-generate="{{ onGenerate }}" hint-size="100%,100%"></dc-import>
+          </div>
+
+        </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1400,&quot;height&quot;:900}}">
+const DOMAINS = [
+  { key: 'category',  label: 'Category',           accent: '#f97316', status: 'live',    ver: 'v1.1.0', last: '2026 RW27 · Week' },
+  { key: 'markets',   label: 'Markets',            accent: '#8b5cf6', status: 'live',    ver: 'v1.1.0', last: '2026 RW27 · Week' },
+  { key: 'marketing', label: 'Marketing',          accent: '#10b981', status: 'beta',    ver: 'v1.0',   last: 'Not generated' },
+  { key: 'ebaylive',  label: 'eBay Live',          accent: '#0ea5e9', status: 'beta',    ver: 'v1.0',   last: 'Not generated' },
+  { key: 'c2c',       label: 'C2C',                accent: '#8a94a6', status: 'planned', ver: '',       last: 'Integration coming' },
+  { key: 'financial', label: 'Financial Services', accent: '#8a94a6', status: 'planned', ver: '',       last: 'Integration coming' },
+];
+
+function svg(children) {
+  return React.createElement('svg', { viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', strokeWidth: 2, strokeLinecap: 'round', strokeLinejoin: 'round', style: { width: '100%', height: '100%' } }, children);
+}
+const ICONS = {
+  category: () => svg([
+    React.createElement('rect', { key: 1, x: 3, y: 3, width: 7.5, height: 7.5, rx: 2 }),
+    React.createElement('rect', { key: 2, x: 13.5, y: 3, width: 7.5, height: 7.5, rx: 2 }),
+    React.createElement('rect', { key: 3, x: 3, y: 13.5, width: 7.5, height: 7.5, rx: 2 }),
+    React.createElement('rect', { key: 4, x: 13.5, y: 13.5, width: 7.5, height: 7.5, rx: 2 }),
+  ]),
+  markets: () => svg([
+    React.createElement('circle', { key: 1, cx: 12, cy: 12, r: 9 }),
+    React.createElement('ellipse', { key: 2, cx: 12, cy: 12, rx: 4, ry: 9 }),
+    React.createElement('line', { key: 3, x1: 3, y1: 12, x2: 21, y2: 12 }),
+  ]),
+  marketing: () => svg([
+    React.createElement('polygon', { key: 1, points: '4 10 4 14 9 14 16 19 16 5 9 10 4 10' }),
+    React.createElement('line', { key: 2, x1: 19, y1: 9, x2: 21, y2: 8 }),
+    React.createElement('line', { key: 3, x1: 19, y1: 15, x2: 21, y2: 16 }),
+  ]),
+  ebaylive: () => svg([
+    React.createElement('rect', { key: 1, x: 2.5, y: 8, width: 19, height: 12.5, rx: 2.5 }),
+    React.createElement('polyline', { key: 2, points: '8 3.5 12 8 16 3.5' }),
+  ]),
+  c2c: () => svg([
+    React.createElement('circle', { key: 1, cx: 8, cy: 8.5, r: 3.2 }),
+    React.createElement('circle', { key: 2, cx: 16, cy: 8.5, r: 3.2 }),
+    React.createElement('path', { key: 3, d: 'M2.5 20a5.5 5.5 0 0 1 11 0' }),
+    React.createElement('path', { key: 4, d: 'M10.5 20a5.5 5.5 0 0 1 11 0' }),
+  ]),
+  financial: () => svg([
+    React.createElement('polygon', { key: 1, points: '3 9 12 4 21 9' }),
+    React.createElement('line', { key: 2, x1: 3, y1: 20, x2: 21, y2: 20 }),
+    React.createElement('line', { key: 3, x1: 7, y1: 11, x2: 7, y2: 17 }),
+    React.createElement('line', { key: 4, x1: 12, y1: 11, x2: 12, y2: 17 }),
+    React.createElement('line', { key: 5, x1: 17, y1: 11, x2: 17, y2: 17 }),
+  ]),
+};
+
+const STATUS = {
+  beta:    { label: 'BETA', bg: 'rgba(245,158,11,0.16)', color: '#f59e0b', dot: '#f59e0b' },
+  planned: { label: 'SOON', bg: 'rgba(138,148,166,0.16)', color: '#8a94a6', dot: '#5b6472' },
+  live:    { label: 'LIVE', bg: 'rgba(52,211,153,0.16)', color: '#34d399', dot: '#34d399' },
+};
+
+class Component extends DCLogic {
+  state = {
+    domain: 'category',
+    section: 'Analysis Summary',
+    gen: { category: true, markets: true },
+    switcherOpen: false,
+  };
+
+  meta(key) { return DOMAINS.find((d) => d.key === key); }
+
+  switchTo(key) {
+    const m = this.meta(key);
+    if (m.status === 'planned') return;
+    this.setState({ domain: key, section: 'Analysis Summary', switcherOpen: false });
+  }
+  setSection(name) { this.setState({ section: name }); }
+  generate() {
+    this.setState((s) => ({ gen: { ...s.gen, [s.domain]: true } }));
+  }
+
+  navList() {
+    const active = this.state.domain;
+    return DOMAINS.map((d) => {
+      const isActive = d.key === active;
+      const planned = d.status === 'planned';
+      const st = STATUS[d.status];
+      const gen = !!this.state.gen[d.key];
+      return {
+        key: d.key,
+        label: d.label,
+        icon: (ICONS[d.key] || ICONS.category)(),
+        onClick: planned ? (() => {}) : (() => this.switchTo(d.key)),
+        cursor: planned ? 'default' : 'pointer',
+        opacity: planned ? '0.5' : '1',
+        iconColor: isActive ? d.accent : (planned ? '#5b6472' : '#8a94a6'),
+        textColor: isActive ? '#ffffff' : (planned ? '#6b7688' : '#c7cedb'),
+        railBg: isActive ? 'rgba(255,255,255,0.06)' : 'transparent',
+        chipBg: isActive ? (d.accent + '22') : '#1b212b',
+        statusShow: d.status !== 'live',
+        statusLabel: st.label,
+        statusBg: st.bg,
+        statusColor: st.color,
+        resumeLabel: planned ? d.last : (gen ? ('Resume · ' + d.last) : 'Not generated yet'),
+        action: planned ? '' : (gen ? 'Resume' : 'Set up'),
+        actionColor: gen ? d.accent : '#8a94a6',
+      };
+    });
+  }
+
+  renderVals() {
+    const m = this.meta(this.state.domain);
+    return {
+      domain: this.state.domain,
+      domainLabel: m.label,
+      accent: m.accent,
+      section: this.state.section,
+      generated: !!this.state.gen[this.state.domain],
+      onSection: (name) => this.setSection(name),
+      onGenerate: () => this.generate(),
+      domains: this.navList(),
+      cIcon: (ICONS[this.state.domain] || ICONS.category)(),
+      switcherOpen: this.state.switcherOpen,
+      toggleSwitcher: () => this.setState((s) => ({ switcherOpen: !s.switcherOpen })),
+      switchBg: this.state.switcherOpen ? (m.accent + '1f') : '#161b23',
+      switchBorder: this.state.switcherOpen ? m.accent : '#2a313d',
+    };
+  }
+}
+</script>
+</body>
+</html>
