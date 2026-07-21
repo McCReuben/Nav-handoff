@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;}
+body{margin:0;background:#05060A;font-family:'IBM Plex Sans',system-ui,sans-serif;}
+a{color:#5EEAF0;text-decoration:none;}
+a:hover{color:#3B82F6;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+@keyframes twinkle{0%,100%{opacity:.45}50%{opacity:.85}}
+@keyframes floatSlow{0%,100%{transform:translate(0,0)}50%{transform:translate(0,-16px)}}
+@keyframes expandIn{from{opacity:0;transform:scale(.28);border-radius:48px}60%{opacity:1}to{opacity:1;transform:scale(1);border-radius:0}}
+@keyframes growDown{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:none}}
+@keyframes toastIn{from{opacity:0;transform:translate(-50%,14px)}to{opacity:1;transform:translate(-50%,0)}}
+@keyframes pulseDot{0%,100%{opacity:.5}50%{opacity:1}}
+</style>
+</helmet>
+
+<div style="position:relative;width:100%;height:100vh;min-height:820px;overflow:hidden;background:#05060A;display:flex;">
+
+  <!-- ===== LAYER 1 · HOME ===== -->
+  <div style="width:40%;position:relative;background:linear-gradient(160deg,#0d1533,#170c30 55%,#070512);padding:48px 52px;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;">
+    <div style="position:absolute;inset:0;opacity:.5;animation:twinkle 8s ease-in-out infinite;background-image:{{ stars }};"></div>
+    <div style="position:absolute;width:340px;height:340px;border-radius:50%;background:radial-gradient(circle,rgba(59,130,246,.35),transparent 70%);top:38%;left:-80px;filter:blur(20px);animation:floatSlow 9s ease-in-out infinite;"></div>
+    <img src="uploads/Team%20Logo%20Dark.svg" alt="eBay Analytics" style="height:30px;display:block;position:relative;z-index:2;align-self:flex-start;">
+    <div style="position:relative;z-index:2;">
+      <div style="font-family:'Space Grotesk',sans-serif;font-size:20px;color:rgba(255,255,255,.6);margin-bottom:18px;animation:fadeUp .7s .05s both;">Welcome back, <span style="color:#fff;font-weight:700;">{{ userName }}</span></div>
+      <div style="display:flex;align-items:center;gap:16px;margin-bottom:22px;animation:fadeUp .8s .12s both;">
+        <svg width="54" height="54" viewBox="0 0 46 46" fill="none" style="filter:drop-shadow(0 0 16px rgba(59,130,246,.6));"><defs><linearGradient id="cgv2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5EEAF0"></stop><stop offset="1" stop-color="#3B82F6"></stop></linearGradient></defs><circle cx="23" cy="23" r="20" stroke="url(#cgv2)" stroke-width="2" opacity="0.4"></circle><circle cx="23" cy="23" r="12" stroke="url(#cgv2)" stroke-width="2" opacity="0.75"></circle><circle cx="23" cy="23" r="5" fill="url(#cgv2)"></circle><circle cx="23" cy="3" r="2.6" fill="#5EEAF0"></circle><circle cx="43" cy="23" r="2.6" fill="#3B82F6"></circle></svg>
+        <span style="font-family:'Space Grotesk',sans-serif;font-size:58px;font-weight:700;letter-spacing:-.02em;line-height:1;background:linear-gradient(90deg,#7FF0F5,#3B82F6);-webkit-background-clip:text;background-clip:text;color:transparent;">CortexAI</span>
+      </div>
+      <div style="font-size:22px;line-height:1.45;color:rgba(255,255,255,.82);max-width:420px;animation:fadeUp .8s .19s both;">Performance insights, <span style="font-style:italic;background:linear-gradient(90deg,#7FF0F5,#3B82F6);-webkit-background-clip:text;background-clip:text;color:transparent;">in seconds.</span> Reimagining diagnostics through AI.</div>
+      <div style="display:flex;flex-direction:column;gap:11px;margin-top:30px;animation:fadeUp .8s .26s both;">
+        <div style="display:flex;align-items:center;gap:12px;color:rgba(255,255,255,.7);font-size:14px;"><span style="width:6px;height:6px;border-radius:50%;background:#5EEAF0;"></span>AI summaries in seconds</div>
+        <div style="display:flex;align-items:center;gap:12px;color:rgba(255,255,255,.7);font-size:14px;"><span style="width:6px;height:6px;border-radius:50%;background:#5EEAF0;"></span>Forecasts vs. actuals, decoded</div>
+        <div style="display:flex;align-items:center;gap:12px;color:rgba(255,255,255,.7);font-size:14px;"><span style="width:6px;height:6px;border-radius:50%;background:#5EEAF0;"></span>Every domain, one lens</div>
+      </div>
+    </div>
+    <div style="position:relative;z-index:2;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.14em;color:rgba(255,255,255,.35);">EBAY ANALYTICS · 2026</div>
+  </div>
+
+  <div style="width:60%;background:#08090F;padding:44px 48px 36px;display:flex;flex-direction:column;overflow:auto;">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
+      <div style="font-family:'Space Grotesk',sans-serif;font-size:27px;font-weight:700;color:#fff;">Choose your domain</div>
+      <div style="padding:8px 16px;border-radius:999px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.03);font-size:12px;font-weight:500;color:rgba(255,255,255,.75);cursor:pointer;">Share Feedback</div>
+    </div>
+    <div style="font-size:14px;color:rgba(255,255,255,.5);margin-bottom:24px;">Each domain opens into its own space with modules, tools & filters.</div>
+
+    <div style="display:flex;flex-direction:column;gap:10px;animation:fadeUp .7s .18s both;">
+      <div onClick="{{ open.category }}" style="display:flex;align-items:center;gap:16px;padding:14px 18px;border-radius:14px;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02);cursor:pointer;transition:transform .2s,background .2s,border-color .2s;" style-hover="transform:translateX(6px);border-color:rgba(245,158,11,.55);background:rgba(245,158,11,.06);">
+        <div style="width:46px;height:46px;border-radius:12px;background:rgba(245,158,11,.12);border:1px solid rgba(245,158,11,.35);display:flex;align-items:center;justify-content:center;flex:0 0 auto;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h6v6H4z M14 4h6v6h-6z M4 14h6v6H4z M14 14h6v6h-6z"></path></svg></div>
+        <div style="flex:1;display:flex;flex-direction:column;gap:7px;">
+          <div style="display:flex;align-items:baseline;gap:10px;"><span style="font-family:'Space Grotesk',sans-serif;font-size:18px;font-weight:700;color:#fff;">Category</span><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;color:#F59E0B;">v1.1.0</span></div>
+          <div style="display:flex;gap:6px;flex-wrap:wrap;">
+            <span style="font-size:11px;padding:3px 9px;border-radius:999px;border:1px solid rgba(245,158,11,.4);color:#FBBF24;background:rgba(245,158,11,.08);">Performance Report</span>
+            <span style="font-size:11px;padding:3px 9px;border-radius:999px;border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.55);background:rgba(255,255,255,.03);">WBR Views</span>
+            <span style="font-size:11px;padding:3px 9px;border-radius:999px;border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.55);background:rgba(255,255,255,.03);">Buyer Funnel</span>
+            <span style="font-size:11px;padding:3px 9px;border-radius:999px;border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.55);background:rgba(255,255,255,.03);">Seller Funnel</span>
+          </div>
+        </div>
+        <span style="color:rgba(255,255,255,.35);font-size:20px;">→</span>
+      </div>
+
+      <div onClick="{{ open.markets }}" style="display:flex;align-items:center;gap:16px;padding:14px 18px;border-radius:14px;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02);cursor:pointer;transition:transform .2s,background .2s,border-color .2s;" style-hover="transform:translateX(6px);border-color:rgba(139,92,246,.55);background:rgba(139,92,246,.06);">
+        <div style="width:46px;height:46px;border-radius:12px;background:rgba(139,92,246,.12);border:1px solid rgba(139,92,246,.35);display:flex;align-items:center;justify-content:center;flex:0 0 auto;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#A78BFA" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18z M3 12h18 M12 3c2.5 2.4 3.8 5.6 3.8 9s-1.3 6.6-3.8 9c-2.5-2.4-3.8-5.6-3.8-9s1.3-6.6 3.8-9z"></path></svg></div>
+        <div style="flex:1;display:flex;flex-direction:column;gap:7px;">
+          <div style="display:flex;align-items:baseline;gap:10px;"><span style="font-family:'Space Grotesk',sans-serif;font-size:18px;font-weight:700;color:#fff;">Markets</span><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;color:#A78BFA;">v1.1.0</span></div>
+          <div style="display:flex;gap:6px;flex-wrap:wrap;"><span style="font-size:11px;padding:3px 9px;border-radius:999px;border:1px solid rgba(139,92,246,.4);color:#C4B5FD;background:rgba(139,92,246,.08);">Performance Report</span></div>
+        </div>
+        <span style="color:rgba(255,255,255,.35);font-size:20px;">→</span>
+      </div>
+
+      <div onClick="{{ open.quantum }}" style="display:flex;align-items:center;gap:16px;padding:14px 18px;border-radius:14px;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02);cursor:pointer;transition:transform .2s,background .2s,border-color .2s;" style-hover="transform:translateX(6px);border-color:rgba(94,234,240,.55);background:rgba(94,234,240,.06);">
+        <div style="width:46px;height:46px;border-radius:12px;background:rgba(94,234,240,.1);border:1px solid rgba(94,234,240,.35);display:flex;align-items:center;justify-content:center;flex:0 0 auto;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#5EEAF0" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.2 6.8L21 12l-6.8 2.2L12 21l-2.2-6.8L3 12l6.8-2.2z M19 3.5v3 M20.5 5h-3"></path></svg></div>
+        <div style="flex:1;display:flex;flex-direction:column;gap:7px;">
+          <div style="display:flex;align-items:baseline;gap:10px;"><span style="font-family:'Space Grotesk',sans-serif;font-size:18px;font-weight:700;color:#fff;">Quantum AI</span><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;color:#5EEAF0;">v1.0</span></div>
+          <div style="display:flex;gap:6px;flex-wrap:wrap;">
+            <span style="font-size:11px;padding:3px 9px;border-radius:999px;border:1px solid rgba(94,234,240,.4);color:#7FF0F5;background:rgba(94,234,240,.08);">Performance Report</span>
+            <span style="font-size:11px;padding:3px 9px;border-radius:999px;border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.55);background:rgba(255,255,255,.03);">Incentives</span>
+            <span style="font-size:11px;padding:3px 9px;border-radius:999px;border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.55);background:rgba(255,255,255,.03);">Diagnostics</span>
+            <span style="font-size:11px;padding:3px 9px;border-radius:999px;border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.55);background:rgba(255,255,255,.03);">Strategic Scorecard</span>
+            <span style="font-size:11px;padding:3px 9px;border-radius:999px;border:1px dashed rgba(255,255,255,.14);color:rgba(255,255,255,.4);">+3 more</span>
+          </div>
+        </div>
+        <span style="color:rgba(255,255,255,.35);font-size:20px;">→</span>
+      </div>
+
+      <div onClick="{{ open.marketing }}" style="display:flex;align-items:center;gap:16px;padding:14px 18px;border-radius:14px;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02);cursor:pointer;transition:transform .2s,background .2s,border-color .2s;" style-hover="transform:translateX(6px);border-color:rgba(20,184,166,.55);background:rgba(20,184,166,.06);">
+        <div style="width:46px;height:46px;border-radius:12px;background:rgba(20,184,166,.12);border:1px solid rgba(20,184,166,.35);display:flex;align-items:center;justify-content:center;flex:0 0 auto;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2DD4BF" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10v4h3l6 4V6l-6 4H3z M16 8a6 6 0 0 1 0 8 M18.5 5.5a9.5 9.5 0 0 1 0 13"></path></svg></div>
+        <div style="flex:1;display:flex;flex-direction:column;gap:7px;">
+          <div style="display:flex;align-items:baseline;gap:10px;"><span style="font-family:'Space Grotesk',sans-serif;font-size:18px;font-weight:700;color:#fff;">Marketing</span><sc-if value="{{ showBeta }}" hint-placeholder-val="{{ true }}"><span style="font-family:'IBM Plex Mono',monospace;font-size:9px;font-weight:500;letter-spacing:.08em;color:#05060A;background:#2DD4BF;padding:2px 6px;border-radius:5px;">BETA</span></sc-if></div>
+          <div style="display:flex;gap:6px;flex-wrap:wrap;"><span style="font-size:11px;padding:3px 9px;border-radius:999px;border:1px solid rgba(20,184,166,.4);color:#5EEAD4;background:rgba(20,184,166,.08);">Performance Report</span></div>
+        </div>
+        <span style="color:rgba(255,255,255,.35);font-size:20px;">→</span>
+      </div>
+
+      <div onClick="{{ open.ebaylive }}" style="display:flex;align-items:center;gap:16px;padding:14px 18px;border-radius:14px;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02);cursor:pointer;transition:transform .2s,background .2s,border-color .2s;" style-hover="transform:translateX(6px);border-color:rgba(59,130,246,.55);background:rgba(59,130,246,.06);">
+        <div style="width:46px;height:46px;border-radius:12px;background:rgba(59,130,246,.12);border:1px solid rgba(59,130,246,.35);display:flex;align-items:center;justify-content:center;flex:0 0 auto;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#60A5FA" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 12m-2.5 0a2.5 2.5 0 1 0 5 0a2.5 2.5 0 1 0 -5 0 M6 6a8.5 8.5 0 0 0 0 12 M18 6a8.5 8.5 0 0 1 0 12"></path></svg></div>
+        <div style="flex:1;display:flex;flex-direction:column;gap:7px;">
+          <div style="display:flex;align-items:baseline;gap:10px;"><span style="font-family:'Space Grotesk',sans-serif;font-size:18px;font-weight:700;color:#fff;">eBay Live</span><sc-if value="{{ showBeta }}" hint-placeholder-val="{{ true }}"><span style="font-family:'IBM Plex Mono',monospace;font-size:9px;font-weight:500;letter-spacing:.08em;color:#05060A;background:#60A5FA;padding:2px 6px;border-radius:5px;">BETA</span></sc-if></div>
+          <div style="display:flex;gap:6px;flex-wrap:wrap;"><span style="font-size:11px;padding:3px 9px;border-radius:999px;border:1px solid rgba(59,130,246,.4);color:#93C5FD;background:rgba(59,130,246,.08);">Performance Report</span></div>
+        </div>
+        <span style="color:rgba(255,255,255,.35);font-size:20px;">→</span>
+      </div>
+    </div>
+
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;color:rgba(255,255,255,.35);margin:20px 0 10px;">COMING SOON</div>
+    <div style="display:flex;flex-direction:column;gap:8px;">
+      <div style="display:flex;align-items:center;gap:16px;padding:11px 18px;border-radius:14px;border:1px dashed rgba(255,255,255,.07);opacity:.55;">
+        <div style="width:38px;height:38px;border-radius:10px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;flex:0 0 auto;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.5)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M7 8h10l-3-3 M17 16H7l3 3"></path></svg></div>
+        <div style="flex:1;font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:600;color:rgba(255,255,255,.55);">C2C</div>
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;color:rgba(255,255,255,.3);">INTEGRATION COMING</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:16px;padding:11px 18px;border-radius:14px;border:1px dashed rgba(255,255,255,.07);opacity:.55;">
+        <div style="width:38px;height:38px;border-radius:10px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;flex:0 0 auto;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.5)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9l8-5 8 5 M5 9v8 M9.5 9v8 M14.5 9v8 M19 9v8 M3.5 20h17"></path></svg></div>
+        <div style="flex:1;font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:600;color:rgba(255,255,255,.55);">Financial Services</div>
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;color:rgba(255,255,255,.3);">INTEGRATION COMING</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== LAYER 2 · DOMAIN PAGE ===== -->
+  <sc-if value="{{ isDomain }}" hint-placeholder-val="{{ false }}">
+    <div style="position:absolute;inset:0;z-index:30;overflow:hidden;background:#07080D;display:flex;flex-direction:column;animation:expandIn .55s cubic-bezier(.16,1,.3,1) both;transform-origin:{{ expandOrigin }};">
+      <div style="position:absolute;inset:0;background:radial-gradient(85% 65% at 12% -8%, {{ accentGlow }}, transparent 55%),radial-gradient(75% 60% at 108% 112%, rgba(124,58,237,.13), transparent 60%);"></div>
+      <div style="position:absolute;inset:0;opacity:.4;animation:twinkle 8s ease-in-out infinite;background-image:{{ stars }};"></div>
+
+      <div style="position:relative;z-index:2;display:flex;justify-content:space-between;align-items:center;padding:28px 48px 20px;">
+        <div onClick="{{ backHome }}" style="display:inline-flex;align-items:center;gap:10px;padding:9px 18px;border-radius:999px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.04);color:rgba(255,255,255,.8);font-size:13px;font-weight:500;cursor:pointer;transition:all .2s;" style-hover="background:rgba(255,255,255,.09);border-color:rgba(255,255,255,.3);"><span style="font-size:16px;line-height:1;">←</span>All domains</div>
+        <img src="uploads/Team%20Logo%20Dark.svg" alt="eBay Analytics" style="height:26px;display:block;">
+      </div>
+
+      <div style="position:relative;z-index:2;flex:1;display:flex;gap:44px;padding:12px 48px 36px;min-height:0;">
+        <div style="width:320px;flex:0 0 auto;display:flex;flex-direction:column;animation:fadeUp .5s .15s both;">
+          <div style="width:72px;height:72px;border-radius:18px;background:{{ accentBg }};border:1px solid {{ accentBorder }};display:flex;align-items:center;justify-content:center;margin-bottom:22px;"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="{{ accentHex }}" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="{{ dIconPath }}"></path></svg></div>
+          <div style="font-family:'Space Grotesk',sans-serif;font-size:42px;font-weight:700;color:#fff;letter-spacing:-.01em;line-height:1.1;margin-bottom:14px;">{{ dName }}</div>
+          <div style="font-size:16px;line-height:1.5;color:rgba(255,255,255,.6);margin-bottom:22px;">{{ dDesc }}</div>
+          <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;color:{{ accentHex }};border:1px solid {{ accentBorder }};padding:4px 10px;border-radius:999px;">{{ dVer }}</span>
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;color:rgba(255,255,255,.45);border:1px solid rgba(255,255,255,.12);padding:4px 10px;border-radius:999px;">{{ dModCount }} MODULES</span>
+          </div>
+          <div style="margin-top:auto;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;color:rgba(255,255,255,.3);">CORTEX AI · {{ dNameUpper }}</div>
+        </div>
+
+        <div style="flex:1;min-width:0;overflow:auto;padding-right:6px;animation:fadeUp .5s .22s both;">
+          <div style="border-radius:20px;border:1px solid {{ accentBorder }};background:linear-gradient(150deg, {{ accentBg }}, rgba(255,255,255,.02));padding:24px 28px;display:flex;flex-direction:column;gap:13px;">
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+              <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.16em;color:{{ accentHex }};">DEFAULT MODULE</span>
+              <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:rgba(255,255,255,.3);">01</span>
+            </div>
+            <div>
+              <div style="font-family:'Space Grotesk',sans-serif;font-size:26px;font-weight:700;color:#fff;margin-bottom:5px;">Performance Report</div>
+              <div style="font-size:14px;color:rgba(255,255,255,.6);line-height:1.45;">{{ prDesc }}</div>
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+              <span onClick="{{ openFilters }}" style="font-size:12px;padding:5px 13px;border-radius:999px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.04);cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:7px;" style-hover="border-color:rgba(255,255,255,.4);background:rgba(255,255,255,.09);"><span style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.1em;color:rgba(255,255,255,.45);">REGION</span><span style="color:#fff;font-weight:500;">{{ regionLabel }}</span><span style="color:rgba(255,255,255,.4);font-size:10px;">▾</span></span>
+              <sc-if value="{{ isCategory }}" hint-placeholder-val="{{ false }}"><span onClick="{{ openFilters }}" style="font-size:12px;padding:5px 13px;border-radius:999px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.04);cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:7px;" style-hover="border-color:rgba(255,255,255,.4);background:rgba(255,255,255,.09);"><span style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.1em;color:rgba(255,255,255,.45);">FOCUS</span><span style="color:#fff;font-weight:500;">{{ focusLabel }}</span><span style="color:rgba(255,255,255,.4);font-size:10px;">▾</span></span></sc-if>
+              <span onClick="{{ openFilters }}" style="font-size:12px;padding:5px 13px;border-radius:999px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.04);cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:7px;" style-hover="border-color:rgba(255,255,255,.4);background:rgba(255,255,255,.09);"><span style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.1em;color:rgba(255,255,255,.45);">CADENCE</span><span style="color:#fff;font-weight:500;">{{ cadence }}</span><span style="color:rgba(255,255,255,.4);font-size:10px;">▾</span></span>
+              <span onClick="{{ openFilters }}" style="font-size:12px;padding:5px 13px;border-radius:999px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.04);cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:7px;" style-hover="border-color:rgba(255,255,255,.4);background:rgba(255,255,255,.09);"><span style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.1em;color:rgba(255,255,255,.45);">PERIOD</span><span style="color:#fff;font-weight:500;">{{ period }}</span><span style="color:rgba(255,255,255,.4);font-size:10px;">▾</span></span>
+            </div>
+            <sc-if value="{{ filterOpen }}" hint-placeholder-val="{{ false }}">
+              <div style="border-top:1px solid rgba(255,255,255,.09);padding-top:18px;display:flex;flex-direction:column;gap:22px;animation:growDown .35s cubic-bezier(.16,1,.3,1) both;">
+                <div>
+                  <label style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;color:rgba(255,255,255,.4);margin-bottom:12px;display:block;">REGION</label>
+                  <sc-if value="{{ isCategory }}" hint-placeholder-val="{{ false }}">
+                    <div style="display:flex;flex-direction:column;gap:8px;">
+                      <sc-for list="{{ regionRows }}" as="r" hint-placeholder-count="5">
+                        <div style="display:flex;flex-direction:column;gap:8px;">
+                          <div onClick="{{ r.onSelect }}" style="display:flex;align-items:center;gap:12px;padding:10px 15px;border-radius:12px;cursor:pointer;transition:all .2s;border:1px solid {{ r.bC }};background:{{ r.bg }};">
+                            <span style="font-size:13px;font-weight:600;color:{{ r.col }};">{{ r.label }}</span>
+                            <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:rgba(255,255,255,.35);flex:1;">{{ r.meta }}</span>
+                            <sc-if value="{{ r.expandable }}" hint-placeholder-val="{{ false }}"><span onClick="{{ r.onToggle }}" style="color:rgba(255,255,255,.5);font-size:13px;padding:2px 8px;border-radius:6px;transition:all .2s;" style-hover="background:rgba(255,255,255,.1);color:#fff;">{{ r.caret }}</span></sc-if>
+                          </div>
+                          <sc-if value="{{ r.expanded }}" hint-placeholder-val="{{ false }}">
+                            <div style="display:flex;gap:6px;flex-wrap:wrap;padding:0 4px 4px;">
+                              <sc-for list="{{ r.countries }}" as="c" hint-placeholder-count="3">
+                                <span onClick="{{ c.onSelect }}" style="font-size:12px;font-weight:{{ c.weight }};padding:6px 13px;border-radius:999px;cursor:pointer;transition:all .2s;border:1px solid {{ c.bC }};background:{{ c.bg }};color:{{ c.col }};">{{ c.label }}</span>
+                              </sc-for>
+                            </div>
+                          </sc-if>
+                        </div>
+                      </sc-for>
+                    </div>
+                  </sc-if>
+                  <sc-if value="{{ notCategory }}" hint-placeholder-val="{{ false }}">
+                    <div style="display:flex;gap:7px;flex-wrap:wrap;">
+                      <sc-for list="{{ simpleRegions }}" as="c" hint-placeholder-count="9">
+                        <span onClick="{{ c.onSelect }}" style="font-size:13px;font-weight:{{ c.weight }};padding:8px 16px;border-radius:999px;cursor:pointer;transition:all .2s;border:1px solid {{ c.bC }};background:{{ c.bg }};color:{{ c.col }};">{{ c.label }}</span>
+                      </sc-for>
+                    </div>
+                  </sc-if>
+                </div>
+
+                <sc-if value="{{ isCategory }}" hint-placeholder-val="{{ false }}">
+                  <div>
+                    <label style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;color:rgba(255,255,255,.4);margin-bottom:12px;display:block;">FOCUS CATEGORY</label>
+                    <div style="display:flex;gap:7px;flex-wrap:wrap;">
+                      <sc-for list="{{ focusChips }}" as="c" hint-placeholder-count="6">
+                        <span onClick="{{ c.onSelect }}" style="font-size:13px;font-weight:{{ c.weight }};padding:8px 16px;border-radius:999px;cursor:pointer;transition:all .2s;border:1px solid {{ c.bC }};background:{{ c.bg }};color:{{ c.col }};">{{ c.label }}</span>
+                      </sc-for>
+                    </div>
+                    <sc-if value="{{ hasFocusSubs }}" hint-placeholder-val="{{ false }}">
+                      <div style="margin-top:12px;padding:12px 14px;border-radius:12px;border:1px solid rgba(255,255,255,.07);background:rgba(255,255,255,.02);">
+                        <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.14em;color:rgba(255,255,255,.35);margin-bottom:9px;">{{ focusGroupUpper }} · SUBCATEGORIES</div>
+                        <div style="display:flex;gap:6px;flex-wrap:wrap;">
+                          <sc-for list="{{ focusSubChips }}" as="c" hint-placeholder-count="4">
+                            <span onClick="{{ c.onSelect }}" style="font-size:12px;font-weight:{{ c.weight }};padding:6px 13px;border-radius:999px;cursor:pointer;transition:all .2s;border:1px solid {{ c.bC }};background:{{ c.bg }};color:{{ c.col }};">{{ c.label }}</span>
+                          </sc-for>
+                        </div>
+                      </div>
+                    </sc-if>
+                  </div>
+                </sc-if>
+
+                <div style="display:grid;grid-template-columns:auto 1fr;gap:22px;">
+                  <div style="min-width:220px;">
+                    <label style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;color:rgba(255,255,255,.4);margin-bottom:12px;display:block;">CADENCE</label>
+                    <div style="display:flex;gap:8px;">
+                      <sc-for list="{{ cadChips }}" as="c" hint-placeholder-count="3">
+                        <div onClick="{{ c.onSelect }}" style="padding:9px 18px;border-radius:10px;font-weight:600;font-size:13px;cursor:pointer;transition:all .2s;border:1px solid {{ c.bC }};background:{{ c.bg }};color:{{ c.col }};">{{ c.label }}</div>
+                      </sc-for>
+                    </div>
+                  </div>
+                  <div>
+                    <label style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;color:rgba(255,255,255,.4);margin-bottom:12px;display:block;">PERIOD</label>
+                    <div style="display:flex;gap:7px;flex-wrap:wrap;">
+                      <sc-for list="{{ periodChips }}" as="c" hint-placeholder-count="6">
+                        <span onClick="{{ c.onSelect }}" style="font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:{{ c.weight }};padding:7px 13px;border-radius:10px;cursor:pointer;transition:all .2s;border:1px solid {{ c.bC }};background:{{ c.bg }};color:{{ c.col }};">{{ c.label }}</span>
+                      </sc-for>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </sc-if>
+
+            <div style="display:flex;gap:10px;margin-top:2px;align-items:center;">
+              <button onClick="{{ toggleFilters }}" style="padding:12px 22px;border-radius:12px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.05);color:#fff;font-family:'IBM Plex Sans',sans-serif;font-size:14px;font-weight:600;cursor:pointer;transition:all .2s;" style-hover="background:rgba(255,255,255,.1);">{{ filterBtnLabel }}</button>
+              <button onClick="{{ launchPR }}" style="{{ prBtnStyle }}">Launch →</button>
+              <sc-if value="{{ filterOpen }}" hint-placeholder-val="{{ false }}"><span style="font-size:12px;color:rgba(255,255,255,.45);">{{ filterSummary }}</span></sc-if>
+            </div>
+          </div>
+
+          <sc-for list="{{ moduleGroups }}" as="g" hint-placeholder-count="1">
+            <div style="display:flex;flex-direction:column;gap:12px;margin-top:24px;">
+              <sc-if value="{{ g.label }}" hint-placeholder-val="{{ false }}">
+                <div style="display:flex;align-items:center;gap:14px;"><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;color:rgba(255,255,255,.45);">{{ g.label }}</span><span style="flex:1;height:1px;background:rgba(255,255,255,.08);"></span></div>
+              </sc-if>
+              <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;">
+                <sc-for list="{{ g.modules }}" as="m" hint-placeholder-count="3">
+                  <div onClick="{{ m.launch }}" style="padding:18px 20px;border-radius:16px;border:1px solid {{ accentBorderSoft }};background:linear-gradient(160deg, {{ accentBgSoft }}, rgba(255,255,255,.02));display:flex;flex-direction:column;gap:8px;min-height:124px;cursor:pointer;transition:transform .2s,border-color .2s,box-shadow .2s;" style-hover="transform:translateY(-4px);border-color:{{ accentBorder }};box-shadow:0 16px 36px {{ accentGlow }};">
+                    <div style="display:flex;justify-content:space-between;align-items:center;">
+                      <span style="width:8px;height:8px;border-radius:3px;background:{{ accentHex }};box-shadow:0 0 10px {{ accentHex }};"></span>
+                      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:rgba(255,255,255,.35);">{{ m.num }}</span>
+                    </div>
+                    <div style="margin-top:auto;">
+                      <div style="font-family:'Space Grotesk',sans-serif;font-size:17px;font-weight:700;color:#fff;margin-bottom:4px;">{{ m.name }}</div>
+                      <div style="font-size:12.5px;color:rgba(255,255,255,.62);line-height:1.4;">{{ m.desc }}</div>
+                    </div>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+          </sc-for>
+
+          <sc-if value="{{ noExtras }}" hint-placeholder-val="{{ false }}">
+            <div style="margin-top:24px;padding:20px 24px;border-radius:16px;border:1px dashed rgba(255,255,255,.1);color:rgba(255,255,255,.4);font-size:13px;">More modules are coming to this domain — Performance Report is where it starts.</div>
+          </sc-if>
+        </div>
+      </div>
+    </div>
+
+  </sc-if>
+
+  <sc-if value="{{ toastOn }}" hint-placeholder-val="{{ false }}">
+    <div style="position:absolute;left:50%;bottom:34px;z-index:60;padding:13px 24px;border-radius:999px;background:rgba(11,13,20,.95);border:1px solid rgba(94,234,240,.4);color:#fff;font-size:14px;box-shadow:0 16px 44px rgba(0,0,0,.55);display:flex;align-items:center;gap:11px;animation:toastIn .35s cubic-bezier(.16,1,.3,1) both;">
+      <span style="width:8px;height:8px;border-radius:50%;background:#5EEAF0;box-shadow:0 0 12px #5EEAF0;animation:pulseDot 1.2s ease-in-out infinite;"></span>{{ toastText }}
+    </div>
+  </sc-if>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:900},&quot;userName&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Reuben&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Content&quot;},&quot;showBeta&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Content&quot;}}">
+class Component extends DCLogic {
+  state = {
+    domain: null, domainIdx: 0, filterOpen: false,
+    regionGroup: 'big3', regionCountry: null, regionExpanded: null,
+    simpleRegion: 'Global',
+    focusGroup: 'All', focusSub: null,
+    cadence: 'Week', period: '2026 RW28',
+    toast: null,
+  };
+
+  renderVals() {
+    const ICONS = {
+      category: 'M4 4h6v6H4z M14 4h6v6h-6z M4 14h6v6H4z M14 14h6v6h-6z',
+      markets: 'M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18z M3 12h18 M12 3c2.5 2.4 3.8 5.6 3.8 9s-1.3 6.6-3.8 9c-2.5-2.4-3.8-5.6-3.8-9s1.3-6.6 3.8-9z',
+      quantum: 'M12 3l2.2 6.8L21 12l-6.8 2.2L12 21l-2.2-6.8L3 12l6.8-2.2z M19 3.5v3 M20.5 5h-3',
+      marketing: 'M3 10v4h3l6 4V6l-6 4H3z M16 8a6 6 0 0 1 0 8 M18.5 5.5a9.5 9.5 0 0 1 0 13',
+      ebaylive: 'M12 12m-2.5 0a2.5 2.5 0 1 0 5 0a2.5 2.5 0 1 0 -5 0 M6 6a8.5 8.5 0 0 0 0 12 M18 6a8.5 8.5 0 0 1 0 12',
+    };
+    const D = {
+      category: { name: 'Category', color: '#F59E0B', ver: 'V1.1.0', idx: 0,
+        desc: 'GMB, verticals & the buyer journey — diagnosed end to end by AI.',
+        prDesc: 'AI-narrated view of GMB, traffic & conversion across categories and regions.',
+        extras: [{ g: 'Diagnostics', name: 'WBR Views', desc: 'Weekly business review, pre-built' },
+                 { g: 'Diagnostics', name: 'Buyer Funnel', desc: 'Diagnose the path to purchase' },
+                 { g: 'Diagnostics', name: 'Seller Funnel', desc: 'Listing-to-sale conversion' }] },
+      markets: { name: 'Markets', color: '#8B5CF6', ver: 'V1.1.0', idx: 1,
+        desc: 'Regional performance & momentum across every eBay market.',
+        prDesc: 'Market-level GMB, share and momentum, narrated by AI.', extras: [] },
+      quantum: { name: 'Quantum AI', color: '#5EEAF0', ver: 'V1.0', idx: 2,
+        desc: 'The full Quantum program — performance, incentives & strategy in one place.',
+        prDesc: 'Program performance at a glance, from spend to outcomes.',
+        extras: [{ g: '', name: 'Incentives', desc: 'Coupon & incentive effectiveness' },
+                 { g: '', name: 'Diagnostics', desc: 'Root-cause performance shifts' },
+                 { g: '', name: 'Strategic Scorecard', desc: 'Goals vs. actuals tracking' },
+                 { g: '', name: 'Optimization', desc: 'Recommendations to tune spend' },
+                 { g: '', name: 'Operations', desc: 'Pipeline & operational health' },
+                 { g: '', name: 'Insights', desc: 'Curated AI findings' }] },
+      marketing: { name: 'Marketing', color: '#14B8A6', ver: 'V1.0 · BETA', idx: 3,
+        desc: 'Spend, channels & ROI — marketing performance decoded.',
+        prDesc: 'Channel spend, efficiency and ROI, summarized by AI.', extras: [] },
+      ebaylive: { name: 'eBay Live', color: '#3B82F6', ver: 'V1.0 · BETA', idx: 4,
+        desc: 'Live commerce performance — shows, sellers & sales.',
+        prDesc: 'Live-show GMV, audience and conversion at a glance.', extras: [] },
+    };
+    const REGION_GROUPS = [
+      { key: 'big3', label: 'Big3', countries: ['US', 'UK', 'DE'] },
+      { key: 'fritca', label: 'FRITCA', countries: ['FR', 'IT', 'CA'] },
+      { key: 'eu', label: 'EU Sites', countries: ['ES', 'BE', 'AT', 'CH', 'IE', 'NL', 'PL'] },
+      { key: 'auz', label: 'AUZ', countries: ['AU', 'NZ'] },
+      { key: 'row', label: 'RoW', countries: [] },
+    ];
+    const FOCUS = [
+      { label: 'All', subs: [] },
+      { label: 'Collectibles', subs: ['Trading Cards', 'Coins & Currency', 'Comics', 'Memorabilia', 'Toys & Hobbies'] },
+      { label: 'Fashion', subs: ['Sneakers', 'Handbags', 'Watches', 'Apparel', 'Jewelry'] },
+      { label: 'Elec & HI', subs: ['Consumer Electronics', 'Computers & Tablets', 'Home & Garden', 'Business & Industrial'] },
+      { label: 'Motors', subs: ['Parts & Accessories', 'Tires & Wheels', 'Tools & Equipment'] },
+      { label: 'Vehicles', subs: ['Cars & Trucks', 'Motorcycles', 'Powersports'] },
+    ];
+    const PERIODS = {
+      Week: ['2026 RW28', '2026 RW27', '2026 RW26', '2026 RW25', '2026 RW24', '2026 RW23'],
+      Month: ['2026 M7', '2026 M6', '2026 M5', '2026 M4', '2026 M3', '2026 M2', '2026 M1'],
+      Quarter: ['2026 Q3', '2026 Q2', '2026 Q1', '2025 Q4'],
+    };
+    const s = this.state;
+    const d = s.domain ? D[s.domain] : null;
+    const ac = d ? d.color : '#3B82F6';
+    const hexA = (hex, a) => hex + a;
+    const isCat = s.domain === 'category';
+
+    const openDomain = (key) => this.setState({
+      domain: key, domainIdx: D[key].idx, filterOpen: false,
+      regionGroup: 'big3', regionCountry: null, regionExpanded: null,
+      simpleRegion: 'Global', focusGroup: 'All', focusSub: null,
+      cadence: 'Week', period: '2026 RW28',
+    });
+    const launch = (modName, detail) => {
+      clearTimeout(this._tt);
+      this._tt = setTimeout(() => this.setState({ toast: null }), 3000);
+      this.setState({ toast: 'Opening ' + modName + ' · ' + d.name + (detail ? ' — ' + detail : ''), filterOpen: false });
+    };
+
+    const chip = (label, sel, on, mono) => ({
+      label, onSelect: on,
+      bC: sel ? ac : 'rgba(255,255,255,.13)',
+      bg: sel ? hexA(ac, '2e') : 'rgba(255,255,255,.03)',
+      col: sel ? '#fff' : 'rgba(255,255,255,.62)',
+      weight: sel ? '600' : '400',
+    });
+
+    const v = {
+      userName: this.props.userName ?? 'Reuben',
+      showBeta: this.props.showBeta ?? true,
+      open: {
+        category: () => openDomain('category'),
+        markets: () => openDomain('markets'),
+        quantum: () => openDomain('quantum'),
+        marketing: () => openDomain('marketing'),
+        ebaylive: () => openDomain('ebaylive'),
+      },
+      isDomain: !!d,
+      toastOn: !!s.toast,
+      toastText: s.toast || '',
+      stars: 'radial-gradient(1.5px 1.5px at 8% 18%,rgba(255,255,255,.7),transparent),radial-gradient(1px 1px at 22% 62%,rgba(255,255,255,.5),transparent),radial-gradient(1.5px 1.5px at 35% 28%,rgba(255,255,255,.6),transparent),radial-gradient(1px 1px at 48% 78%,rgba(255,255,255,.45),transparent),radial-gradient(1px 1px at 60% 12%,rgba(255,255,255,.6),transparent),radial-gradient(1.5px 1.5px at 72% 50%,rgba(255,255,255,.55),transparent),radial-gradient(1px 1px at 83% 24%,rgba(255,255,255,.5),transparent),radial-gradient(1.5px 1.5px at 90% 70%,rgba(255,255,255,.6),transparent),radial-gradient(1px 1px at 15% 88%,rgba(255,255,255,.4),transparent),radial-gradient(1px 1px at 55% 40%,rgba(255,255,255,.4),transparent),radial-gradient(1px 1px at 40% 92%,rgba(255,255,255,.4),transparent),radial-gradient(1.5px 1.5px at 66% 84%,rgba(255,255,255,.5),transparent)',
+    };
+    if (!d) return v;
+
+    // ---- domain page ----
+    const rg = REGION_GROUPS.find(g => g.key === s.regionGroup);
+    const regionLabel = isCat ? (s.regionCountry || (rg ? rg.label : 'Big3')) : s.simpleRegion;
+    const fg = FOCUS.find(g => g.label === s.focusGroup) || FOCUS[0];
+    const focusLabel = s.focusSub || fg.label;
+
+    let num = 1;
+    const groupsMap = [];
+    d.extras.forEach(m => {
+      num += 1;
+      let grp = groupsMap.find(g => g.label === m.g);
+      if (!grp) { grp = { label: m.g, modules: [] }; groupsMap.push(grp); }
+      grp.modules.push({ name: m.name, desc: m.desc, num: String(num).padStart(2, '0'), launch: () => launch(m.name) });
+    });
+    groupsMap.forEach(g => { if (g.label) g.label = g.label.toUpperCase(); });
+
+    Object.assign(v, {
+      expandOrigin: '78% ' + (16 + d.idx * 14) + '%',
+      accentHex: ac,
+      accentGlow: hexA(ac, '24'),
+      accentBorder: hexA(ac, '4d'),
+      accentBorderSoft: hexA(ac, '33'),
+      accentBg: hexA(ac, '14'),
+      accentBgSoft: hexA(ac, '0f'),
+      dName: d.name,
+      dNameUpper: d.name.toUpperCase(),
+      dDesc: d.desc,
+      dVer: d.ver,
+      dIconPath: ICONS[s.domain],
+      dModCount: 1 + d.extras.length,
+      prDesc: d.prDesc,
+      isCategory: isCat,
+      notCategory: !isCat,
+      regionLabel, focusLabel,
+      cadence: s.cadence, period: s.period,
+      backHome: () => this.setState({ domain: null, filterOpen: false }),
+      openFilters: () => this.setState({ filterOpen: true }),
+      toggleFilters: () => this.setState({ filterOpen: !s.filterOpen }),
+      filterBtnLabel: s.filterOpen ? 'Hide Filters' : 'Adjust Filters',
+      filterOpen: s.filterOpen,
+      launchPR: () => launch('Performance Report', regionLabel + (isCat ? ' · ' + focusLabel : '') + ' · ' + s.period),
+      moduleGroups: groupsMap,
+      noExtras: d.extras.length === 0,
+      prBtnStyle: {
+        padding: '12px 26px', borderRadius: '12px', border: 'none', cursor: 'pointer',
+        fontFamily: "'IBM Plex Sans',sans-serif", fontWeight: '600', fontSize: '14px',
+        color: s.domain === 'quantum' ? '#05060A' : '#fff', background: ac,
+        boxShadow: '0 12px 30px ' + hexA(ac, '55'), transition: 'all .2s',
+      },
+      filterSummary: 'Performance Report · ' + regionLabel + (isCat ? ' · ' + focusLabel : '') + ' · ' + s.cadence + ' · ' + s.period,
+    });
+
+    // ---- filter panel data ----
+    v.regionRows = REGION_GROUPS.map(g => {
+      const groupSel = s.regionGroup === g.key && !s.regionCountry;
+      const expanded = s.regionExpanded === g.key;
+      return {
+        label: g.label,
+        meta: g.countries.length ? g.countries.join(' · ') : 'Rest of world',
+        expandable: g.countries.length > 0,
+        expanded,
+        caret: expanded ? '▴' : '▾',
+        bC: groupSel ? ac : 'rgba(255,255,255,.1)',
+        bg: groupSel ? hexA(ac, '24') : 'rgba(255,255,255,.02)',
+        col: groupSel || s.regionExpanded === g.key ? '#fff' : 'rgba(255,255,255,.75)',
+        onSelect: () => this.setState({ regionGroup: g.key, regionCountry: null }),
+        onToggle: (e) => { e.stopPropagation(); this.setState({ regionExpanded: expanded ? null : g.key }); },
+        countries: g.countries.map(code => chip(code, s.regionCountry === code, () => this.setState({ regionGroup: g.key, regionCountry: code }))),
+      };
+    });
+    v.simpleRegions = ['Global', 'US', 'UK', 'DE', 'FR', 'IT', 'ES', 'CA', 'AU']
+      .map(r => chip(r, s.simpleRegion === r, () => this.setState({ simpleRegion: r })));
+    v.focusChips = FOCUS.map(g => chip(g.label, s.focusGroup === g.label && !s.focusSub, () => this.setState({ focusGroup: g.label, focusSub: null })));
+    v.hasFocusSubs = fg.subs.length > 0;
+    v.focusGroupUpper = fg.label.toUpperCase();
+    v.focusSubChips = fg.subs.map(sub => chip(sub, s.focusSub === sub, () => this.setState({ focusSub: sub })));
+    v.cadChips = ['Week', 'Month', 'Quarter'].map(c => chip(c, s.cadence === c, () => this.setState({ cadence: c, period: PERIODS[c][0] })));
+    v.periodChips = PERIODS[s.cadence].map(p => chip(p, s.period === p, () => this.setState({ period: p })));
+    return v;
+  }
+}
+</script>
+</body>
+</html>
